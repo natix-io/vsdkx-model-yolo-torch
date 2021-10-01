@@ -1,4 +1,5 @@
 from numpy import ndarray
+from vsdkx.core.util.model import box_sanity_check
 from vsdkx.core.interfaces import ModelDriver
 from vsdkx.core.structs import Inference
 import torch
@@ -58,6 +59,9 @@ class YoloTorchDriver(ModelDriver):
                 # Iterate over the predicted bounding boxes and filter
                 #   the boxes with class "person"
                 if c_id in self._filter_classes:
+                    box = box_sanity_check(box,
+                                           image.shape[0],
+                                           image.shape[1])
                     result_boxes.append(box)
                     result_scores.append(score)
                     result_classes.append(c_id)
