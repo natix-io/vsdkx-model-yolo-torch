@@ -7,8 +7,6 @@ import torchvision
 from vsdkx.core.interfaces import ModelDriver
 from vsdkx.core.structs import Inference, FrameObject
 
-torch.cuda.is_available = lambda: False
-
 
 class YoloTorchDriver(ModelDriver):
 
