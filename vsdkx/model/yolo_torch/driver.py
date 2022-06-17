@@ -33,6 +33,7 @@ class YoloTorchDriver(ModelDriver):
         self._yolo = torch.hub.load('ultralytics/yolov5',
                                     self._model_name,
                                     **self._model_path)
+        self._yolo.to(self._device)
 
     def inference(self, frame_object: FrameObject) -> Inference:
         """
